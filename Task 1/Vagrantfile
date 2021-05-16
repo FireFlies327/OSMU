@@ -11,9 +11,9 @@ Vagrant.configure(2) do |server|
   server.vm.box_check_update = false
 
   server.vm.define "ub1" do |ub1|
-      oleg.vm.network  "public_network", ip: "192.168.1.1"
-      oleg.vm.hostname = "ub1"
-      oleg.vm.provider "virtualbox" do |vb|
+      ub1.vm.network  "public_network", ip: "192.168.1.1"
+      ub1.vm.hostname = "ub1"
+      ub1.vm.provider "virtualbox" do |vb|
         vb.gui = true
         vb.memory=512
         vb.cpus=1
@@ -21,9 +21,9 @@ Vagrant.configure(2) do |server|
   end
 
  server.vm.define "ub2" do |ub2|
-     suhomerov.vm.network "public_network", ip: "192.168.1.2"
-     suhomerov.vm.hostname = "ub2"
-     suhomerov.vm.provider "virtualbox" do |vb|
+     ub2.vm.network "public_network", ip: "192.168.1.2"
+     ub2.vm.hostname = "ub2"
+     ub2.vm.provider "virtualbox" do |vb|
         vb.gui = true
         vb.memory=512
         vb.cpus=1
