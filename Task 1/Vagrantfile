@@ -1,0 +1,33 @@
+
+$script = <<-SCRIPT
+        sudo apt-get install git -y
+        wget https://raw.githubusercontent.com/FireFlies327/OSMU/lab2b/Task%201/text.txt
+        cat text.txt
+        ping -c 4 192.168.1.1
+        SCRIPT
+
+Vagrant.configure(2) do |server|
+  server.vm.box = "ubuntu/trusty64"
+  server.vm.box_check_update = false
+
+  server.vm.define "ub1" do |ub1|
+      oleg.vm.network  "public_network", ip: "192.168.1.1"
+      oleg.vm.hostname = "ub1"
+      oleg.vm.provider "virtualbox" do |vb|
+        vb.gui = true
+        vb.memory=512
+        vb.cpus=1
+      end
+  end
+
+ server.vm.define "ub2" do |ub2|
+     suhomerov.vm.network "public_network", ip: "192.168.1.2"
+     suhomerov.vm.hostname = "ub2"
+     suhomerov.vm.provider "virtualbox" do |vb|
+        vb.gui = true
+        vb.memory=512
+        vb.cpus=1
+     end
+ end
+ server.vm.provision "shell", inline: $script
+end
